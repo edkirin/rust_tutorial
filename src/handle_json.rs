@@ -4,6 +4,9 @@ use serde::{Deserialize, Serialize};
 // use serde_json::Result;
 
 
+const JSON_DATA_FILE: &str = "demodata/people-in-space.json";
+
+
 #[derive(Serialize, Deserialize)]
 struct Person {
     craft: String,
@@ -35,16 +38,19 @@ fn create_from_json(json_data: &str) -> PeopleInSpace {
 
 
 pub fn handle_json_demo() {
-    let json_data: String =
-        read_from_file("demodata/people-in-space.json")
-            .expect("Error reading file!"); // FIXME: error catching not working;
+    match read_from_file(JSON_DATA_FILE) {
+        Ok(json_data) => {
+            let pis: PeopleInSpace = create_from_json(&json_data);
 
-    let pis: PeopleInSpace = create_from_json(&json_data);
+            println!("{}", pis.number);
+            println!("{}", pis.message);
 
-    println!("{}", pis.number);
-    println!("{}", pis.message);
-
-    for person in pis.people {
-        println!("{}: {}", person.craft, person.name);
+            for person in pis.people {
+                println!("{}: {}", person.craft, person.name);
+            }
+        }
+        Err(err) => {
+            println!("Error reading file '{}': {}", JSON_DATA_FILE, err);
+        }
     }
 }

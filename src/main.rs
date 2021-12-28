@@ -7,7 +7,10 @@ use crate::movie_traits::movie_traits_demo;
 mod structs;
 use crate::structs::structs_demo;
 mod handle_json;
+
 use crate::handle_json::handle_json_demo;
+mod error_handling;
+use crate::error_handling::error_handling_demo;
 
 
 #[allow(dead_code)]
@@ -17,6 +20,7 @@ enum TutorialSection {
     MoviesTraitsDemo,
     StructsDemo,
     HandleJsonDemo,
+    ErrorHandlingDemo,
 }
 
 
@@ -31,5 +35,6 @@ fn main() {
         TutorialSection::MoviesTraitsDemo => movie_traits_demo(),
         TutorialSection::StructsDemo => structs_demo(),
         TutorialSection::HandleJsonDemo => handle_json_demo(),
+        TutorialSection::ErrorHandlingDemo => error_handling_demo(),
     }
 }
