@@ -26,7 +26,7 @@ pub fn guessing_game_main() {
             println!("Too small!");
             println!("Too small!");
             println!("Too small!");
-        },
+        }
         Ordering::Greater => println!("Too big!"),
         Ordering::Equal => println!("You win!"),
     }

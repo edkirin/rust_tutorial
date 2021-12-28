@@ -1,5 +1,3 @@
-
-
 fn composition() {
     let static_str = "Hello";
     let mut s = String::from(static_str);
